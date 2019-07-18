@@ -3,6 +3,8 @@
 -include("emqx_mysql.hrl").
 -include_lib("emqx/include/emqx.hrl").
 
+-define(SAVE_MESSAGE_PUBLISH, <<"INSERT INTO mqtt_msg(`mid`, `client_id`, `topic`, `payload`, `time`) VALUE(?, ?, ?, ?, ?);">>).
+
 -export([load_hook/1, unload_hook/0, on_message_publish/2]).
 
 
@@ -15,10 +17,9 @@ unload_hook() ->
 on_message_publish(#message{from = emqx_sys} = Message, _State) ->
 	{ok, Message};
 on_message_publish(#message{flags = #{retain := true}} = Message, _State) ->
-	#message{id = Id, qos = Qos, topic = Topic, payload = Payload, from = From} = Message,
-	emqx_mysql_cli:query(<<"INSERT INTO mqtt_msg(`mid`, `client_id`, `topic`, `payload`, `time`) VALUE(?, ?, ?, ?, ?);">>, [emqx_guid:to_hexstr(Id), binary_to_list(From), binary_to_list(Topic), binary_to_list(Payload), timestamp()]),
+	#message{id = Id, topic = Topic, payload = Payload, from = From} = Message,
+	emqx_mysql_cli:query(?SAVE_MESSAGE_PUBLISH, [emqx_guid:to_hexstr(Id), binary_to_list(From), binary_to_list(Topic), binary_to_list(Payload), timestamp()]),
 	{ok, Message};
-
 on_message_publish(Message, _State) ->
 	{ok, Message}.
 
