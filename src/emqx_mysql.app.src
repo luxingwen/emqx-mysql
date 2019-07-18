@@ -1,0 +1,7 @@
+{application,emqx_mysql,
+             [{description,"EMQ X message save MySQL"},
+              {vsn,"git"},
+              {modules,[]},
+              {registered,[emqx_mysql_sup]},
+              {applications,[kernel,stdlib,mysql,ecpool,clique, emqx]},
+              {mod,{emqx_mysql_app,[]}}]}.

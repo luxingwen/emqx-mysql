@@ -1,0 +1,33 @@
+##--------------------------------------------------------------------
+## MySQL message save Plugin
+##--------------------------------------------------------------------
+
+## MySQL server address.
+##
+## Value: Port | IP:Port
+##
+## Examples: 3306, 127.0.0.1:3306, localhost:3306
+mysql.server = 127.0.0.1:3306
+
+## MySQL pool size.
+##
+## Value: Number
+mysql.pool = 8
+
+## MySQL username.
+##
+## Value: String
+mysql.username = easylinker
+
+## MySQL password.
+##
+## Value: String
+mysql.password = 123456
+
+## MySQL database.
+##
+## Value: String
+mysql.database = easylinker_v3
+
+
+mysql.query_timeout = 10
