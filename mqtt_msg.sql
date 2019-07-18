@@ -20,11 +20,11 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `mqtt_msg`;
 CREATE TABLE `mqtt_msg` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `mid` varchar(255) DEFAULT NULL,
-  `qos` int(11) DEFAULT NULL,
+  `client_id` varchar(255) DEFAULT NULL,
   `topic` varchar(255) DEFAULT NULL,
   `payload` text,
   `time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2330 DEFAULT CHARSET=utf8mb4;
