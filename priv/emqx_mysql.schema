@@ -24,7 +24,8 @@
   {default, "mqtt"},
   {datatype, string}
 ]}.
-{mapping, "mysql.query_timeout", "emqx_auth_mysql.server", [
+
+{mapping, "mysql.query_timeout", "emqx_mysql.server", [
   {default, ""},
   {datatype, string}
 ]}.
